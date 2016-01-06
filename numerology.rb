@@ -1,3 +1,5 @@
+require 'sinatra'
+
 def determine_birth_number(birthday)
 number = birthday[0].to_i + birthday[1].to_i + birthday[2].to_i + birthday[3].to_i + birthday[4].to_i + birthday[5].to_i + birthday[6].to_i + birthday[7].to_i
 
@@ -38,11 +40,18 @@ else
 end
 end
 
-puts "Please enter your birthday in a MMDDYYYY format."
-birthday = gets
+#puts "Please enter your birthday in a MMDDYYYY format."
+#birthday = gets
 
-number = determine_birth_number(birthday)
+#number = determine_birth_number(birthday)
 
-message = display_message(number)
+#message = display_message(number)
 
-puts message
+#puts message
+
+get '/:birthday' do
+  birthday = params[:birthday]
+  number = determine_birth_number(birthday)
+  message = display_message(number)
+  "#{message}"
+end
